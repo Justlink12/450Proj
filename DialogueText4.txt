@@ -1,6 +1,6 @@
 0 0 0 0 1 "If this is about the murder, I already told everyone I know nothing.">"I need your statement.">"I don't have time for this."
 0 0 0 1 2 "Then make it brief.">"Who did you see near the window?">"Where were you when the lights cut out?"
-0 0 1 1 1 "I saw someone step away from the dining car and hide in the hall.">"Do you know who?">"Why didn't you say anything sooner?"
+0 0 1 1 1 "I saw someone step away from the dining car and hide in the hall.">"Do you know who?">"Why didn't you say anything sooner?" EVIDENCE:dining_car_witness
 0 1 1 1 0 "No, but it was moving fast.">"This is still useful.">" "
 1 1 1 1 1 "I was trying to keep my head down, not get involved.">"Fair enough.">" "
 0 0 1 2 0 "I was in the dining car, waiting for my drink.">"That helps a little.">"Fine."

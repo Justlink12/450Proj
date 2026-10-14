@@ -1,7 +1,7 @@
 0 0 0 0 1 "Ugh, I can't get any reception here">"Excuse me ma'am, can I ask you a few questions?">"Now's not the time to be on the phone."
 0 0 0 1 2 "Huh? Can't you see I'm busy?">"Yes, sorry to interrupt">"Busy not helping my investigation"
 0 0 1 1 1 "Whatever, what do you need?">"Have you seen anyone acting suspiciously?">"Where were you when Kyte was killed?"
-0 1 1 1 0 "I did see Miranda run to the other train car when the lights came back on">"Thanks, I'll folow up on that">"Lots of people are moving between the cars"
+0 1 1 1 0 "I did see Miranda run to the other train car when the lights came back on">"Thanks, I'll folow up on that">"Lots of people are moving between the cars" EVIDENCE:miranda_train_car_sighting
 1 1 1 1 1 "Yeah okay whatever. Make sure when you catch the killer, you mention me. It will be good for my Fursta">"Of course">" "
 0 2 1 1 0 "Trying to get reception in here. I didn't realize the train would have no Wifi">"Why didn't you turn on the flashlight?">"Did you happen to record anything?"
 1 2 1 1 2 "I'm not wasting my battery for meaningless shit">"Finding a killer isn't meaningless">" "
@@ -19,7 +19,7 @@
 0 1 1 2 1 "So, even you?">"What, no, I'm the detective">"If that makes you feel better"
 1 1 1 2 0 "Hmm, I don't know, you seem suspicious to me">"I'll just step away">" "
 0 2 1 2 1 "I wouldn't kill anyone. That would get me cancelled so fast!">"Then who do you think could have done it?">"That doesn't mean anything to me"
-1 2 1 2 2 "Well, I'm pretty sure I saw ash put something under the sink in one of the bathrooms">"Appreciated">" "
+1 2 1 2 2 "Well, I'm pretty sure I saw ash put something under the sink in one of the bathrooms">"Appreciated">" " EVIDENCE:object_hidden_under_sink
 2 2 1 2 1 "It should, especially when I post about this when I have service again">"Make sure to tag me">" "
 2 1 1 2 0 "Pft, not really. Stop bothering me.">"...">" "
 0 0 2 2 2 "Are you threatening me?">"No, I'm just warning you">"It's a risk your taking by not helping"

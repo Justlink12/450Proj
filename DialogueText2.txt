@@ -1,6 +1,6 @@
 0 0 0 0 1 "I was just looking for my bag. What do you want?">"Can I ask you a few questions?">"This isn't a good time."
 0 0 0 1 2 "Fine. Just don't waste my time.">"I need to know what happened.">"I can keep this quick."
-0 0 1 1 1 "I saw someone run toward the back of the train.">"Thanks. Who was it?">"Did you recognize them?"
+0 0 1 1 1 "I saw someone run toward the back of the train.">"Thanks. Who was it?">"Did you recognize them?" EVIDENCE:brief_case
 0 1 1 1 0 "It looked like Ash, but I couldn't be sure.">"Good to know.">"That helps a little."
 1 1 1 1 1 "If you find out anything, tell me before the police do.">"I will.">" "
 0 0 1 2 0 "Not much. I was in my cabin, trying to calm down.">"I'm sorry. We'll keep moving.">"That doesn't help much."
