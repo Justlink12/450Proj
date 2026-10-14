@@ -1,0 +1,6 @@
+2026-03-04 15:09:11  WM_QUERYENDSESSION (lParam: 0 - ordinary system shutdown/restart) =====================================
+2026-03-04 15:09:12  WM_ENDSESSION (wParam: TRUE, lParam: 0 - ordinary system shutdown/restart)
+2026-03-04 15:09:12  C:\raylib\npp\config.xml is opened.
+2026-03-04 15:09:12  C:\raylib\npp\config.xml  9369/9369 bytes are written.
+2026-03-04 15:09:12  C:\raylib\npp\config.xml is closed.
+2026-03-04 15:09:12  WM_DESTROY (isEndSessionStarted == true)

@@ -1,0 +1,8 @@
+0 0 0 0 1 "You keep staring at me like that, it's creepy.">"I need to ask you about the train.">"Not now."
+0 0 0 1 2 "Then ask fast. I don't like being watched.">"Who was near the front carriage?">"What were you doing when it happened?"
+0 0 1 1 1 "I was checking the engine room, that's all.">"Did anyone else head there?">"That sounds suspicious."
+0 1 1 1 0 "No. At least, no one I noticed.">"Thanks.">" "
+1 1 1 1 1 "You can keep digging. I just don't want to be the next target.">"Understood.">" "
+0 0 1 2 0 "I was in the service hall, alone.">"That explains nothing.">"Fine."
+0 1 1 2 1 "Then stop wasting my time.">"Right.">" "
+2 1 1 2 0 "I said I don't know more.">"All right.">" "
