@@ -20,6 +20,9 @@ Dialogue is stored in `DialogueText1.txt` through `DialogueText5.txt`. To award 
 ```text
 0 0 1 1 1 "Witness statement.">"Tell me more.">"Goodbye." EVIDENCE:witness_statement
 ```
+## Incomplete
+
+The game 'story' is still not implemented. The dialogue text is currently just placeholder.
 
 Collected evidence is saved in `Inventory.txt`. In the game, choose **Reset Save** and then **Confirm Reset** to clear it.
 (Written in assistance with Co-Pilot)
