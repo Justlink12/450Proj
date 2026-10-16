@@ -19,13 +19,13 @@
 // Holds one line from a character's dialogue file.
 typedef struct {
     int branch[MAX_PATH_DEPTH];                   // Choice sequence that leads to this line.
-    char text[MAX_CHOICES + 1][MAX_TEXT_LENGTH];  // [0] is spoken text; [1] and [2] are answers.
+    char text[MAX_CHOICES + 1][MAX_TEXT_LENGTH];  // [0] is spoken text, [1] and [2] are answers.
     char evidenceId[MAX_EVIDENCE_ID_LENGTH];      // Optional ID to add to inventory at this line.
 } DialogueNode;
 
 // Remembers where the player is in the current character's conversation.
 typedef struct {
-    int path[MAX_PATH_DEPTH];  // Answers selected so far; 0 means no answer at that depth.
+    int path[MAX_PATH_DEPTH];  // Answers selected so far, 0 means no answer at that depth.
     int depth;                 // Number of answers selected so far.
     int currentNodeIndex;      // Index in the loaded node array, or -1 if there is no match.
     bool ended;                // True when no next dialogue node was found.
@@ -324,7 +324,7 @@ static int loadInventory(char inventory[MAX_EVIDENCE][MAX_EVIDENCE_ID_LENGTH]) {
             continue;
         }
         if (inventoryCount >= MAX_EVIDENCE) {
-            TraceLog(LOG_WARNING, "Inventory save contains more than %d items; extra items were ignored.", MAX_EVIDENCE);
+            TraceLog(LOG_WARNING, "Inventory save contains more than %d items, extra items were ignored.", MAX_EVIDENCE);
             break;
         }
 
@@ -354,7 +354,7 @@ static void collectEvidence(const DialogueNode *node, char inventory[MAX_EVIDENC
     }
 
     if (*inventoryCount >= MAX_EVIDENCE) {
-        TraceLog(LOG_WARNING, "Inventory is full; could not add evidence: %s", node->evidenceId);
+        TraceLog(LOG_WARNING, "Inventory is full, could not add evidence: %s", node->evidenceId);
         return;
     }
 
@@ -584,7 +584,7 @@ int main(void) {
                 if (inventoryCount == 0) {
                     DrawText("No evidence collected yet.", 80, 100, 24, DARKGRAY);
                 } else {
-                    // Do not draw more than the visible limit; scrolling changes the offset.
+                    // Do not draw more than the visible limit and scrolling changes the offset.
                     int visibleCount = inventoryCount - inventoryScroll;
                     if (visibleCount > INVENTORY_VISIBLE_ITEMS) {
                         visibleCount = INVENTORY_VISIBLE_ITEMS;
