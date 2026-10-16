@@ -1,4 +1,5 @@
-# Character Dialogue Game
+# Project Sheptective
+Tehila Morgan, William Pariseau
 
 A small C game where you choose characters, follow branching conversations, and collect evidence.
 
