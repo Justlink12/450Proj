@@ -59,7 +59,7 @@ static void trimInPlace(char *text) {
 
     if (start != text) {
         memmove(text, start, strlen(start) + 1);
-    }
+    } //test
 
     //Remove whitespace at the end too, including Windows line endings.
     size_t len = strlen(text);
