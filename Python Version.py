@@ -1,4 +1,4 @@
-pip install raylib
+#pip install raylib
 
 import os
 import re
