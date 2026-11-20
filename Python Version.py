@@ -10,20 +10,19 @@ import pyray as pr
 INVENTORY_SAVE_PATH = "Inventory.txt"
 MAX_PATH_DEPTH = 4
 
-
+# Enumerations for game screens
 class GameScreen(Enum):
     CHARACTER_SELECT = auto()
     DIALOGUE = auto()
     INVENTORY = auto()
 
-
+# Data classes for dialogue nodes, dialogue state, and NPCs
 @dataclass
 class DialogueNode:
     branch: list[int] = field(default_factory=list)
     spoken_text: str = ""
     choices: list[str] = field(default_factory=list)
     evidence_id: str = ""
-
 
 @dataclass
 class DialogueState:
@@ -40,7 +39,7 @@ class NPC:
     color: pr.Color
     box: pr.Rectangle
 
-
+#Matches index of dialogue node based on the player's current path
 def find_node_by_branch(dialogue: list[DialogueNode], path: list[int]) -> int:
     """Find the index of the dialogue node matching the player's current path."""
     for i, node in enumerate(dialogue):
@@ -48,7 +47,7 @@ def find_node_by_branch(dialogue: list[DialogueNode], path: list[int]) -> int:
             return i
     return -1
 
-
+# Load dialogue file and parse lines into DialogueNode objects
 def load_dialogue_file(file_path: str) -> list[DialogueNode]:
     """Parse dialogue lines and evidence tags using Python string operations."""
     nodes = []
@@ -94,7 +93,7 @@ def load_dialogue_file(file_path: str) -> list[DialogueNode]:
 
     return nodes
 
-
+# Reset dialogue state to the opening line
 def reset_dialogue_state(state: DialogueState, dialogue: list[DialogueNode]) -> None:
     """Reset position to the opening line (path filled with zeros)."""
     state.path = [0] * MAX_PATH_DEPTH
@@ -104,7 +103,7 @@ def reset_dialogue_state(state: DialogueState, dialogue: list[DialogueNode]) -> 
     if state.current_node_index == -1:
         state.ended = True
 
-
+# Advance dialogue based on player's choice
 def advance_dialogue(state: DialogueState, dialogue: list[DialogueNode], choice_index: int) -> None:
     """Record the chosen answer and locate the target dialogue node."""
     if state.ended or state.depth >= MAX_PATH_DEPTH:
@@ -119,7 +118,7 @@ def advance_dialogue(state: DialogueState, dialogue: list[DialogueNode], choice_
     if state.current_node_index == -1:
         state.ended = True
 
-
+# Save and load inventory functions
 def save_inventory(inventory: set[str]) -> bool:
     """Save unique evidence IDs directly to disk."""
     try:
@@ -131,7 +130,7 @@ def save_inventory(inventory: set[str]) -> bool:
         pr.trace_log(pr.LOG_ERROR, f"Failed to save inventory: {e}")
         return False
 
-
+# Load inventory from disk into a set
 def load_inventory() -> set[str]:
     """Load collected evidence IDs into a Python set."""
     inventory = set()
@@ -150,7 +149,7 @@ def load_inventory() -> set[str]:
 
     return inventory
 
-
+# Collect evidence from the current dialogue node
 def collect_evidence(node: DialogueNode, inventory: set[str]) -> None:
     """Collect unique evidence ID and persist changes."""
     if not node.evidence_id:
@@ -161,7 +160,7 @@ def collect_evidence(node: DialogueNode, inventory: set[str]) -> None:
         if not save_inventory(inventory):
             pr.trace_log(pr.LOG_ERROR, "Evidence collected but save failed.")
 
-
+# Draw UI elements
 def draw_choice_button(box: pr.Rectangle, text: str, hover: bool) -> None:
     bg = pr.SKYBLUE if hover else pr.LIGHTGRAY
     border = pr.BLUE if hover else pr.DARKGRAY
@@ -169,18 +168,19 @@ def draw_choice_button(box: pr.Rectangle, text: str, hover: bool) -> None:
     pr.draw_rectangle_rounded_lines(box, 0.12, 0, border)
     pr.draw_text(text, int(box.x) + 16, int(box.y) + 12, 20, pr.BLACK)
 
-
+# Draw a top button with rounded corners
 def draw_top_button(box: pr.Rectangle, text: str) -> None:
     pr.draw_rectangle_rounded(box, 0.12, 0, pr.LIGHTGRAY)
     pr.draw_text(text, int(box.x) + 14, int(box.y) + 8, 20, pr.BLACK)
 
-
+# Draw wrapped text within a specified rectangle
 def draw_wrapped_text(text: str, x: int, y: int, font_size: int, max_width: int, max_height: int, color: pr.Color) -> None:
     """Wrap text to fit within given box boundaries."""
     words = text.split(' ')
     lines = []
     current_line = ""
 
+    # Build lines by adding words until the width exceeds max_width
     for word in words:
         test_line = f"{current_line} {word}".strip() if current_line else word
         if pr.measure_text(test_line, font_size) <= max_width:
@@ -197,7 +197,7 @@ def draw_wrapped_text(text: str, x: int, y: int, font_size: int, max_width: int,
     for i, line in enumerate(lines[:max_lines]):
         pr.draw_text(line, x, y + i * line_height, font_size, color)
 
-
+# Main game loop
 def main():
     characters = [
         NPC("Sara", "DialogueText1.txt", pr.RED, pr.Rectangle(60, 80, 220, 170)),
@@ -206,7 +206,7 @@ def main():
         NPC("Asper", "DialogueText4.txt", pr.PURPLE, pr.Rectangle(330, 300, 220, 170)),
         NPC("Fila", "DialogueText5.txt", pr.PURPLE, pr.Rectangle(600, 80, 220, 170))
     ]
-
+    # Initialize game state variables
     nodes: list[DialogueNode] = []
     state = DialogueState()
     inventory: set[str] = load_inventory()
@@ -221,6 +221,7 @@ def main():
     pr.init_window(960, 540, "Character Dialogue Select")
     pr.set_target_fps(60)
 
+    # Main game loop
     while not pr.window_should_close():
         mouse_pos = pr.get_mouse_position()
 
@@ -243,6 +244,7 @@ def main():
                     previous_screen = screen
                     screen = GameScreen.INVENTORY
 
+            # Handle dialogue screen interactions
             elif screen == GameScreen.DIALOGUE:
                 back_button = pr.Rectangle(720, 20, 180, 40)
                 inventory_button = pr.Rectangle(520, 20, 180, 40)
@@ -266,6 +268,7 @@ def main():
                                 collect_evidence(nodes[state.current_node_index], inventory)
                             break
 
+            # Inventory screen button handling
             elif screen == GameScreen.INVENTORY:
                 back_button = pr.Rectangle(720, 20, 180, 40)
                 reset_button = pr.Rectangle(500, 20, 180, 40)
@@ -307,6 +310,7 @@ def main():
                 pr.draw_rectangle_rounded_lines(char.box, 0.16, 0, pr.BLACK if hover else pr.WHITE)
                 pr.draw_text(char.name, int(char.box.x) + 20, int(char.box.y) + 65, 28, pr.WHITE)
 
+        # Inventory screen rendering
         elif screen == GameScreen.INVENTORY:
             pr.draw_text("Inventory", 60, 22, 32, pr.DARKGRAY)
             draw_top_button(pr.Rectangle(500, 20, 180, 40), "Confirm Reset" if confirm_inventory_reset else "Reset Save")
@@ -329,13 +333,14 @@ def main():
                 if len(inv_list) > inventory_visible_items:
                     scroll_info = f"{inventory_scroll + 1}-{inventory_scroll + visible_count} of {len(inv_list)} (scroll to view more)"
                     pr.draw_text(scroll_info, 80, 510, 18, pr.GRAY)
-
+        # Dialogue screen rendering
         elif screen == GameScreen.DIALOGUE:
             char_name = characters[active_character].name if active_character >= 0 else ""
             pr.draw_text(f"Character: {char_name}", 60, 22, 28, pr.DARKGRAY)
             draw_top_button(pr.Rectangle(520, 20, 180, 40), f"Inventory ({len(inventory)})")
             draw_top_button(pr.Rectangle(720, 20, 180, 40), "Back")
 
+            # Render dialogue box and choices
             if not state.ended and state.current_node_index >= 0:
                 current_node = nodes[state.current_node_index]
                 pr.draw_rectangle_rounded(pr.Rectangle(60, 80, 840, 170), 0.18, 0, pr.LIGHTGRAY)
